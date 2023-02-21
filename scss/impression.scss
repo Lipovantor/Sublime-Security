@@ -22,7 +22,8 @@ body {
 .impression {
   width: 50%;
   position: relative;
-  max-height: 230px;
+  // max-height: 230px;
+  max-height: 360px;
   overflow: hidden;
   cursor: pointer;
 
@@ -60,7 +61,7 @@ body {
       padding: 12px 22px;
       background: rgba(23, 23, 28, .9);
       border-radius: 4px;
-      border: 1px solid rgba(144, 144, 144, 0.1);
+      border: 1px solid rgba(144, 144, 144, .1);
     }
 
     &__list {

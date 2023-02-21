@@ -1,0 +1,223 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  min-height: 100vh;
+  background-color: #0A0A0D;
+  font-family: "Spline Sans Mono";
+}
+
+.container {
+  max-width: 1200px;
+  padding: 16px;
+  margin: 0 auto;
+}
+
+.ruler {
+  width: 50%;
+  position: relative;
+  max-height: 360px;
+  overflow: hidden;
+  cursor: pointer;
+}
+@media (max-width: 1024px) {
+  .ruler {
+    width: 100%;
+  }
+}
+.ruler__header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 2;
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto 10px;
+  padding: 12px 22px;
+  background: #17171C;
+  border-radius: 100px;
+  border: 1px solid rgba(144, 144, 144, 0.1);
+}
+.ruler__header-title {
+  margin-bottom: 7px;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.8);
+}
+.ruler__header-counter {
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+  color: rgba(203, 203, 214, 0.6);
+}
+.ruler__item {
+  max-width: 450px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 18px 15px;
+  margin: 0 auto 10px;
+  background: #17171C;
+  border-radius: 100px;
+  border: 1px solid rgba(144, 144, 144, 0.1);
+}
+.ruler__box {
+  height: 0;
+  width: 100%;
+  overflow: hidden;
+  background: #0E0E11;
+  border-radius: 4px;
+}
+.ruler__box-title {
+  margin-bottom: 12px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.8);
+}
+.ruler-code {
+  display: flex;
+}
+.ruler-code__numbers {
+  width: 10%;
+  display: flex;
+  flex-direction: column;
+}
+.ruler-code__number {
+  margin-bottom: 5px;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+  color: #808080;
+}
+.ruler-code__field {
+  width: 90%;
+}
+.ruler-code__row {
+  display: flex;
+  margin-bottom: 5px;
+}
+.ruler-code__row_first, .ruler-code__row_two, .ruler-code__row_three {
+  width: 0;
+  overflow: hidden;
+}
+.ruler-code__text {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+}
+.ruler-code__text_blue {
+  color: rgb(31, 85, 176);
+}
+.ruler-code__text_white {
+  color: rgba(255, 255, 255, 0.8);
+}
+.ruler-code__text_orange {
+  color: rgb(190, 98, 37);
+}
+.ruler-code__text_yellow {
+  color: rgb(191, 159, 52);
+}
+.ruler-code__text_purple {
+  color: rgb(106, 49, 203);
+}
+.ruler__description {
+  margin-left: 22px;
+}
+.ruler__title {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.01em;
+  color: #FFFFFF;
+}
+.ruler__text {
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.8);
+}
+.ruler__darken {
+  position: absolute;
+  z-index: 300;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(180deg, rgba(8, 9, 12, 0.44) 0%, #08090C 100%);
+}
+.ruler:hover .ruler__list {
+  animation: scrollRuler 3.5s forwards;
+}
+@keyframes scrollRuler {
+  0% {
+    transform: translateY(0);
+  }
+  60% {
+    transform: translateY(-160px);
+  }
+  100% {
+    transform: translateY(-60px);
+  }
+}
+.ruler:hover .ruler__item_spec {
+  animation: biggerRulerSpecItem 0.4s 3.5s forwards;
+}
+@keyframes biggerRulerSpecItem {
+  0% {
+    max-width: 450px;
+  }
+  100% {
+    position: absolute;
+    top: 60px;
+    max-width: 100%;
+    width: 100%;
+    height: 350px;
+    border-radius: 8px;
+    align-items: flex-start;
+  }
+}
+.ruler:hover .ruler__box {
+  animation: showRulerBoxCode 0.4s 3.6s forwards;
+}
+@keyframes showRulerBoxCode {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 100%;
+    padding: 20px;
+    margin-top: 16px;
+    border: 1px solid rgba(144, 144, 144, 0.1);
+  }
+}
+@keyframes writeCodeFirst {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+.ruler:hover .ruler-code__row_first {
+  animation: writeCodeFirst 4s 4s forwards;
+}
+.ruler:hover .ruler-code__row_two {
+  animation: writeCodeFirst 2.4s 4.8s forwards;
+}
+
+/*# sourceMappingURL=ruler.css.map */
