@@ -63,7 +63,13 @@ body {
     }
   }
 
+  &__list {
+    display: flex;
+    flex-direction: column;
+  }
+
   &__item {
+    width: 100%;
     max-width: 450px;
     display: flex;
     align-items: center;
@@ -97,11 +103,31 @@ body {
     }
   }
 
+  &__label {
+    width: 0;
+    overflow: hidden;
+    border-radius: 100px;
+    position: relative;
+
+    span {
+      font-weight: 400;
+      font-size: 11px;
+      line-height: 16px;
+      letter-spacing: .02em;
+      background: linear-gradient(233.25deg, rgba(0, 194, 146, 0.6) 0%, rgba(54, 122, 235, 0.6) 99.28%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+    }
+  }
+
   &-code {
     display: flex;
+    position: relative;
 
     &__numbers {
-      width: 10%;
+      width: 5%;
       display: flex;
       flex-direction: column;
     }
@@ -116,7 +142,7 @@ body {
     }
 
     &__field {
-      width: 90%;
+      width: 95%;
     }
 
     &__row {
@@ -125,7 +151,14 @@ body {
 
       &_first,
       &_two,
-      &_three {
+      &_three,
+      &_four,
+      &_five,
+      &_six,
+      &_seven,
+      &_eight,
+      &_nine,
+      &_ten {
         width: 0;
         overflow: hidden;
       }
@@ -142,7 +175,7 @@ body {
       }
 
       &_white {
-        color: rgba(255, 255, 255, 0.8);
+        color: rgba(255, 255, 255, .8);
       }
 
       &_orange {
@@ -155,6 +188,35 @@ body {
 
       &_purple {
         color: rgba(106, 49, 203, 1);
+      }
+    }
+
+    &__blink {
+      position: relative;
+      bottom: -2px;
+      height: 12px;
+      width: 2px;
+      background-color: rgba(255, 255, 255, .8);
+    }
+
+    &__button {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      padding: 7px 12px;
+      background: linear-gradient(81.3deg, #D94836 6.6%, #6A31CB 93.33%);
+      backdrop-filter: blur(7.65781px);
+      border-radius: 150px;
+      font-weight: 400;
+      font-size: 11px;
+      line-height: 16px;
+      letter-spacing: .02em;
+      color: rgba(255, 255, 255, .8);
+
+      svg {
+        margin-left: 10px;
       }
     }
   }
@@ -185,13 +247,14 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 50px;
-    background: linear-gradient(180deg, rgba(8, 9, 12, 0.44) 0%, #08090C 100%);
+    height: 70px;
+    background: linear-gradient(180deg, rgba(8, 9, 12, 0) 0%, #08090C 100%);
   }
 
   &:hover {
     .ruler__list {
-      animation: scrollRuler 3.5s forwards;
+      animation: scrollRuler 3.5s forwards, 
+      scrollRulerListEnd 2.2s 13.5s forwards;
       @keyframes scrollRuler {
         0% {
           transform: translateY(0);
@@ -203,9 +266,22 @@ body {
           transform: translateY(-60px);
         }
       }
+      @keyframes scrollRulerListEnd {
+        0% {
+          transform: translateY(-60px);
+        }
+        60% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(-60px);
+        }
+      }
     }
     .ruler__item_spec {
-      animation: biggerRulerSpecItem .4s 3.5s forwards;
+      animation: biggerRulerSpecItem .4s 3.5s forwards, 
+      scrollerRulerSpecItem 3.2s 9s forwards,
+      returnRulerSpecItem .6s 13.3s forwards;
       @keyframes biggerRulerSpecItem {
         0% {
           max-width: 450px;
@@ -220,9 +296,32 @@ body {
           align-items: flex-start;
         }
       }
+      @keyframes scrollerRulerSpecItem {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          z-index: 400;
+          transform: translateY(-72px);
+        }
+      }
+      @keyframes returnRulerSpecItem {
+        100% {
+          position: static;
+          top: auto;
+          max-width: 450px;
+          width: 100%;
+          height: auto;
+          border-radius: 100px;
+          align-items: center;
+          transform: translateY(0);
+          border: 1px solid #106871;
+        }
+      }
     }
     .ruler__box {
-      animation: showRulerBoxCode .4s 3.6s forwards;
+      animation: showRulerBoxCode .4s 3.6s forwards,
+      returnBoxSpecItem .6s 13.3s forwards;
       @keyframes showRulerBoxCode {
         0% {
           height: 0;
@@ -232,6 +331,17 @@ body {
           padding: 20px;
           margin-top: 16px;
           border: 1px solid rgba(144, 144, 144, .1);
+        }
+      }
+      @keyframes returnBoxSpecItem {
+        100% {
+          height: 0;
+          padding: 0;
+          margin: 0;
+          border: none;
+          position: absolute;
+          top: -1000%;
+          opacity: 0;
         }
       }
     }
@@ -249,25 +359,69 @@ body {
     .ruler-code__row_two {
       animation: writeCodeFirst 2.4s 4.8s forwards;
     }
+    .ruler-code__row_three {
+      animation: writeCodeFirst 2.2s 5.8s forwards;
+    }
+    .ruler-code__row_four {
+      animation: writeCodeFirst 2s 6.8s forwards;
+    }
+    .ruler-code__row_five {
+      animation: writeCodeFirst 1.8s 7.8s forwards;
+    }
+    .ruler-code__row_six {
+      animation: writeCodeFirst .3s 8.8s forwards;
+    }
+    .ruler-code__row_seven {
+      animation: writeCodeFirst 1.4s 9.2s forwards;
+    }
+    .ruler-code__row_eight {
+      animation: writeCodeFirst 2s 10s forwards;
+    }
+    .ruler-code__row_nine {
+      animation: writeCodeFirst .2s 10.5s forwards;
+    }
+    .ruler-code__row_ten {
+      animation: writeCodeFirst .2s 10.8s forwards;
+    }
+    .ruler-code__blink {
+      animation: showBlinkCodeFirst .8s 10.9s infinite;
+      @keyframes showBlinkCodeFirst {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+    }
+    .ruler-code__button {
+      animation: clickButtonCodeFirst .4s 13.2s forwards;
+      @keyframes clickButtonCodeFirst {
+        0% {
+          transform: scale(1) translateY(0);
+        }
+        90% {
+          transform: scaleX(.9) translateY(2px);
+        }
+        100% {
+          background: transparent;
+          border: 1px solid rgba(144, 144, 144, .1);
+        }
+      }
+    }
+    .ruler__label {
+      animation: showLabelRulerItem .4s 13.2s forwards;
+      @keyframes showLabelRulerItem {
+        0% {
+          width: 0;
+        }
+        100% {
+          width: 140px;
+          padding: 6px 18px 7px;
+          border: 1px solid #106871;
+          margin-left: auto;
+        }
+      }
+    }
   }
 }
-
-
-
-// .text-typing {
-//   width: 40em;
-//   color:green;
-//   font-size: 22px;
-//   font-family: 'Marck Script', cursive;
-//   white-space:nowrap;
-//   overflow:hidden;
-//   -webkit-animation: type 5s steps(50, end);
-//   animation: type 5s steps(50, end);
-// }
-// @keyframes type{
-//   from { width: 0; }
-// }
- 
-// @-webkit-keyframes type{
-//   from { width: 0; }
-// }
