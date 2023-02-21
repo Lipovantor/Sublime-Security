@@ -1,0 +1,380 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  min-height: 100vh;
+  background-color: #0A0A0D;
+  font-family: 'Spline Sans Mono';
+}
+
+.container {
+  max-width: 1200px;
+  padding: 16px;
+  margin: 0 auto;
+}
+
+.impression {
+  width: 50%;
+  position: relative;
+  max-height: 230px;
+  overflow: hidden;
+  cursor: pointer;
+
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
+
+  &__darken {
+    position: absolute;
+    z-index: 300;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(180deg, rgba(8, 9, 12, 0.44) 0%, #08090C 100%);
+
+    &_second {
+      opacity: 0;
+    }
+  }
+
+  &-first {
+    font-family: 'Spline Sans Mono', monospace;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: .02em;
+    color: rgba(255, 255, 255, .8);
+    
+    &__header {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 12px 22px;
+      background: rgba(23, 23, 28, .9);
+      border-radius: 4px;
+      border: 1px solid rgba(144, 144, 144, 0.1);
+    }
+
+    &__list {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    &__item {
+      position: relative;
+      width: calc(50% - 5px);
+      padding: 18px;
+      background: rgba(23, 23, 28, .9);
+      border-radius: 4px;
+      border: 1px solid rgba(144, 144, 144, 0.1);
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 21px;
+        width: 28px;
+        height: 3px;
+        background: linear-gradient(233.25deg, rgba(0, 194, 146, 0.6) 0%, rgba(54, 122, 235, 0.6) 99.28%);
+        border-radius: 0px 0px 2px 2px;
+      }
+
+      &_spec {
+        &::after {
+          background: linear-gradient(233.25deg, #A62116 0%, #E88A37 99.28%);
+        }
+      }
+    }
+
+    &__title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-left: 3px;
+      margin-bottom: 3px;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 20px;
+      letter-spacing: .01em;
+      color: #FFFFFF;
+    }
+
+    &__subtitle {
+      padding-left: 3px;
+      margin-bottom: 13px;
+      font-weight: 400;
+      font-size: 11px;
+      line-height: 16px;
+      letter-spacing: .02em;
+      color: rgba(255, 255, 255, .8);
+    }
+
+    &__button {
+      width: fit-content;
+      display: flex;
+      align-items: center;
+      padding: 8px 13px;
+      border-radius: 150px;
+      border: 1px solid rgba(144, 144, 144, 0.1);
+      font-weight: 400;
+      font-size: 11px;
+      line-height: 16px;
+      letter-spacing: .02em;
+      color: rgba(203, 203, 214, .6);
+
+      &_spec {
+        border: none;
+        background: linear-gradient(233.25deg, rgba(0, 194, 146, 0.6) 0%, rgba(54, 122, 235, 0.6) 99.28%);
+        color: rgba(255, 255, 255, 0.8);
+
+        svg {
+          margin-left: 7px;
+        }
+
+        &-text {
+          max-width: 62px;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+
+  &-second {
+    font-family: 'Spline Sans Mono', monospace;
+    
+    &__header {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 2;
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 12px 22px;
+      background: rgba(23, 23, 28, .9);
+      border-radius: 4px;
+      border: 1px solid rgba(144, 144, 144, .1);
+
+      &-title {
+        font-weight: 400;
+        font-size: 11px;
+        line-height: 16px;
+        letter-spacing: .02em;
+        color: rgba(255, 255, 255, .8);
+
+        span {
+          color: rgba(255, 255, 255, .6);
+        }
+      }
+
+      &-counter {
+        font-weight: 400;
+        font-size: 11px;
+        line-height: 16px;
+        letter-spacing: .02em;
+        color: rgba(203, 203, 214, .6);
+      }
+    }
+
+    &__item {
+      margin-bottom: 10px;
+      padding: 12px 22px;
+      background: rgba(23, 23, 28, .9);
+      border-radius: 4px;
+      border: 1px solid rgba(144, 144, 144, 0.1);
+    }
+
+    &__title {
+      display: flex;
+      align-items: center;
+      margin-bottom: 7px;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 20px;
+      letter-spacing: .01em;
+      color: #FFFFFF;
+
+      svg {
+        margin-right: 10px;
+      }
+    }
+
+    &__subtitle {
+      padding-left: 27px;
+      font-weight: 400;
+      font-size: 11px;
+      line-height: 16px;
+      letter-spacing: .02em;
+      color: rgba(255, 255, 255, .8);
+    }
+  }
+
+  &:hover {
+
+    .impression-first__list {
+      animation: scrollingImpressionFirstList 2.5s forwards;
+      @keyframes scrollingImpressionFirstList {
+        0% {
+          transform: translateY(0);
+        }
+        80% {
+          transform: translateY(-130px);
+        }
+        100% {
+          transform: translateY(-115px);
+        }
+      }
+    }
+
+    .impression-first__button_spec {
+      animation: pressButtonSubscribe .5s 2.5s forwards;
+      @keyframes pressButtonSubscribe {
+        0% {
+          transform: scale(1);
+        }
+        10% {
+          transform: translateY(3px);
+          transform: scale(0.95);
+        }
+        100% {
+          transform: scale(1);
+          background: none;
+          color: rgba(203, 203, 214, .6);
+          border: 1px solid rgba(144, 144, 144, 0.1);
+        }
+      }
+    }
+
+    .impression-first__button_spec svg{
+      animation: pressButtonSubscribeHideSVG .1s 2.7s forwards;
+      @keyframes pressButtonSubscribeHideSVG {
+        0% {
+          position: static;
+        }
+        20% {
+          opacity: 0;
+        }
+        100% {
+          position: absolute;
+          top: -100px;
+          opacity: 0;
+        }
+      }
+    }
+
+    .impression-first__item_spec::after {
+      animation: pressButtonSubscribeAfterBG .1s 2.7s forwards;
+      @keyframes pressButtonSubscribeAfterBG {
+        0% {
+          background: linear-gradient(233.25deg, #A62116 0%, #E88A37 99.28%);
+        }
+        100% {
+          background: linear-gradient(233.25deg, rgba(0, 194, 146, 0.6) 0%, rgba(54, 122, 235, 0.6) 99.28%);
+        }
+      }
+    }
+
+    .impression-first__button_spec-text {
+      animation: pressButtonSubscribeChangeTextButton .1s 2.7s forwards;
+      @keyframes pressButtonSubscribeChangeTextButton {
+        0% {
+          max-width: 62px;
+        }
+        100% {
+          max-width: 70px;
+        }
+      }
+    }
+
+    .impression__darken_first {
+      z-index: 200;
+      animation: hideImpressionDarken .1s 2.7s forwards;
+      @keyframes hideImpressionDarken {
+        0% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+    }
+
+    .impression-first__item_spec {
+      z-index: 200;
+      animation: biggerCardImpression .6s 2.8s forwards;
+      @keyframes biggerCardImpression {
+        0% {
+          transform: scale(1);
+        }
+        100% {
+          transform: scale(2.1) translateX(-70px);
+        }
+      }
+    }
+
+    .impression-first {
+      animation: hideFirstImpression .4s 3.4s forwards;
+      @keyframes hideFirstImpression {
+        0% {
+          transform: translateX(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translateX(-100%);
+          opacity: 0;
+        }
+      }
+    }
+
+    .impression-second {
+      animation: showSecondImpression .4s 3.4s forwards;
+      @keyframes showSecondImpression {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(-445px);
+        }
+      }
+    }
+
+    .impression__darken_second {
+      z-index: 400;
+      animation: showImpressionDarken .1s 3.4s forwards;
+      @keyframes showImpressionDarken {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+    }
+
+    .impression-second__list {
+      animation: scrollSecondImpressionList 3.2s 3.8s infinite;
+      @keyframes scrollSecondImpressionList {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-100px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+}
