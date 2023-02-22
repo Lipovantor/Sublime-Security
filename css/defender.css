@@ -1,0 +1,383 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  min-height: 100vh;
+  background-color: #0A0A0D;
+  font-family: "Spline Sans Mono";
+}
+
+.container {
+  max-width: 1200px;
+  padding: 16px;
+  margin: 0 auto;
+}
+
+.defender {
+  width: 50%;
+  position: relative;
+  max-height: 360px;
+  overflow: hidden;
+  cursor: pointer;
+}
+@media (max-width: 1024px) {
+  .defender {
+    width: 100%;
+  }
+}
+.defender__darken {
+  width: 100%;
+  height: 60px;
+  position: absolute;
+  left: 0;
+  background: linear-gradient(180deg, rgba(8, 9, 12, 0) 0%, #08090C 65.1%);
+  z-index: 200;
+}
+.defender__darken_top {
+  top: 0;
+  transform: rotate(180deg);
+}
+.defender__darken_bottom {
+  bottom: 0;
+}
+.defender__list {
+  max-width: 480px;
+}
+.defender__item {
+  max-width: 420px;
+  padding: 12px 15px 12px 12px;
+  margin: 0 auto 10px;
+  background: #17171C;
+  border-radius: 4px;
+}
+.defender__item_spec {
+  position: relative;
+  border: 1px solid rgba(144, 144, 144, 0.1);
+}
+.defender__item_spec-logo1 {
+  z-index: 1;
+}
+.defender__item_spec-logo2 {
+  z-index: 0;
+  position: absolute;
+  top: 13px;
+  left: 13px;
+}
+.defender__item_unchecked {
+  border: 1px solid rgba(144, 144, 144, 0.1);
+}
+.defender__item_checked {
+  border: 1px solid #106871;
+}
+.defender__title {
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.01em;
+  color: #FFFFFF;
+}
+.defender__title-text {
+  margin-left: 17px;
+}
+.defender__tools {
+  margin-left: auto;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.8);
+}
+.defender__tools svg {
+  margin-left: 10px;
+}
+.defender__from, .defender__to {
+  padding-left: 50px;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.8);
+}
+.defender__checker {
+  position: relative;
+  z-index: 100;
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  background: #17171C;
+  border: 1px solid #8A2415;
+  border-radius: 100px;
+}
+.defender__checker-title {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.8);
+}
+.defender__checker-title svg {
+  margin-right: 8px;
+}
+.defender__checker-count {
+  margin-left: auto;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+  color: rgba(203, 203, 214, 0.6);
+}
+.defender .warning {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  max-width: 430px;
+  border-radius: 4px;
+  background-color: #17171C;
+}
+.defender .warning__header {
+  margin-bottom: 13px;
+  padding: 9px;
+  background-color: #8A2415;
+  border-radius: 4px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.01em;
+  color: #FFFFFF;
+}
+.defender .warning__title {
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.01em;
+  color: #FFFFFF;
+}
+.defender .warning__logo {
+  margin-right: 17px;
+  animation: warnignLogoBlink 1.4s infinite;
+}
+@keyframes warnignLogoBlink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.defender .warning__tool {
+  margin-left: auto;
+  margin-right: 8px;
+}
+.defender .warning__from, .defender .warning__to {
+  padding-left: 50px;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.8);
+}
+.defender:hover .defender__list {
+  animation: firstScrollingDefenderList 3.2s 0.3s forwards, secondAfterWarnScrollingDefenderList 1.4s 7.6s forwards, finishScrollingDefenderList 2s 12.6s forwards;
+}
+@keyframes firstScrollingDefenderList {
+  0% {
+    transform: translateY(0);
+  }
+  60% {
+    transform: translateY(-440px);
+  }
+  100% {
+    transform: translateY(-300px);
+  }
+}
+@keyframes secondAfterWarnScrollingDefenderList {
+  100% {
+    transform: translateY(-320px);
+  }
+}
+@keyframes finishScrollingDefenderList {
+  100% {
+    transform: translateY(-370px);
+  }
+}
+.defender:hover .defender__item_unchecked {
+  animation: uncheckedItemsProcessingChecking 1.8s 4.2s forwards, uncheckedItemsScrollingDownForWarning 1s 7.5s forwards, returnuncheckedItemsWhenHideWarning 1s 11.2s forwards;
+}
+@keyframes uncheckedItemsProcessingChecking {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100px);
+  }
+}
+@keyframes uncheckedItemsScrollingDownForWarning {
+  0% {
+    transform: translateY(100px);
+  }
+  100% {
+    transform: translateY(240px);
+  }
+}
+@keyframes returnuncheckedItemsWhenHideWarning {
+  0% {
+    transform: translateY(240px);
+  }
+  100% {
+    transform: translateY(100px);
+  }
+}
+.defender:hover .defender__item_warn {
+  animation: uncheckedItemsProcessingChecking 1.8s 4.2s forwards, nextCheckingWarnBigger 0.5s 7s forwards, uncheckedItemsScrollingDownForWarning 1s 7.5s forwards, hideItemWarn 1s 7.4s forwards;
+}
+@keyframes nextCheckingWarnBigger {
+  0% {
+    max-width: 420px;
+  }
+  70% {
+    max-width: 424px;
+  }
+  100% {
+    max-width: 420px;
+  }
+}
+@keyframes hideItemWarn {
+  100% {
+    opacity: 0;
+    position: absolute;
+    bottom: -1000px;
+  }
+}
+.defender:hover .defender__item_checked {
+  animation: checkedItemsProcessingChecking 2.4s 4.2s forwards;
+}
+@keyframes checkedItemsProcessingChecking {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100px);
+  }
+}
+.defender:hover .defender__item_spec {
+  animation: specItemProcessingCheckingBigger 0.5s 3.6s forwards, specItemProcessingChecking 2.2s 4.2s forwards, specItemProcessingCheckingColored 0.6s 5s forwards, downWhenWarnActive 0.01s 7.6s forwards, returnWhenHideWarning 1s 11.2s forwards;
+}
+@keyframes specItemProcessingCheckingBigger {
+  0% {
+    max-width: 420px;
+  }
+  70% {
+    max-width: 424px;
+  }
+  100% {
+    max-width: 420px;
+  }
+}
+@keyframes specItemProcessingChecking {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(148px);
+  }
+}
+@keyframes specItemProcessingCheckingColored {
+  100% {
+    border-color: #106871;
+  }
+}
+@keyframes downWhenWarnActive {
+  100% {
+    transform: translateY(328px);
+  }
+}
+@keyframes returnWhenHideWarning {
+  100% {
+    transform: translateY(148px);
+  }
+}
+.defender:hover .defender__item_spec-logo1 {
+  animation: hideLogoAfterChecking 0.6s 5s forwards;
+}
+@keyframes hideLogoAfterChecking {
+  100% {
+    opacity: 0;
+  }
+}
+.defender:hover .defender__item_spec-logo2 {
+  animation: showCheckLogoAfterChecking 0.6s 5s forwards;
+}
+@keyframes showCheckLogoAfterChecking {
+  100% {
+    z-index: 3;
+  }
+}
+.defender:hover .warning {
+  animation: showWarningBox 1s 7.6s forwards, flyWarningBox 1.6s 10s forwards, deleteWarningBox 1.4s 11.2s forwards;
+}
+@keyframes showWarningBox {
+  0% {
+    opacity: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+  }
+  100% {
+    opacity: 1;
+    height: auto;
+    padding: 8px 10px 15px;
+    margin: 20px auto;
+    border: 1px solid #8A2415;
+  }
+}
+@keyframes flyWarningBox {
+  60% {
+    transform: translate(-15px, -8px);
+  }
+  100% {
+    transform: translate(-500px, -30px);
+  }
+}
+@keyframes deleteWarningBox {
+  100% {
+    opacity: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+  }
+}
+.defender:hover .defender__checker {
+  animation: viewWhenShowWarn 0.4s 7.6s forwards, returnWhenHideWarn 1.1s 11.2s forwards;
+}
+@keyframes viewWhenShowWarn {
+  100% {
+    border-radius: 4px;
+  }
+}
+@keyframes returnWhenHideWarn {
+  100% {
+    border-radius: 100px;
+  }
+}
+
+/*# sourceMappingURL=defender.css.map */
