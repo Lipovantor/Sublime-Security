@@ -41,7 +41,7 @@ body {
     margin: 0 auto 10px;
     padding: 12px 22px;
     background: #17171C;
-    border-radius: 100px;
+    border-radius: 4px;
     border: 1px solid rgba(144, 144, 144, .1);
 
     &-title {
@@ -214,8 +214,25 @@ body {
       letter-spacing: .02em;
       color: rgba(255, 255, 255, .8);
 
-      svg {
-        margin-left: 10px;
+      // svg {
+      //   margin-left: 10px;
+      // }
+
+      &-word {
+        max-width: 40px;
+        overflow: hidden;
+      }
+
+      &-plus,
+      &-check {
+        margin-left: 7px;
+      }
+
+      &-check {
+        opacity: 0;
+        position: absolute;
+        right: 10px;
+        width: 10px;
       }
     }
   }
@@ -252,8 +269,9 @@ body {
 
   &:hover {
     .ruler__list {
-      animation: scrollRuler 3.5s forwards, 
-      scrollRulerListEnd 2.2s 13.5s forwards;
+      animation: 
+      scrollRuler 3.5s .3s forwards, 
+      scrollRulerListEnd 4s 16s forwards;
       @keyframes scrollRuler {
         0% {
           transform: translateY(0);
@@ -269,18 +287,19 @@ body {
         0% {
           transform: translateY(-60px);
         }
-        60% {
-          transform: translateY(0);
+        40% {
+          transform: translateY(-210px);
         }
         100% {
-          transform: translateY(-60px);
+          transform: translateY(0px);
         }
       }
     }
     .ruler__item_spec {
-      animation: biggerRulerSpecItem .4s 3.5s forwards, 
+      animation: 
+      biggerRulerSpecItem .4s 4s forwards, 
       scrollerRulerSpecItem 3.2s 9s forwards,
-      returnRulerSpecItem .6s 13.3s forwards;
+      returnRulerSpecItem .6s 14s forwards;
       @keyframes biggerRulerSpecItem {
         0% {
           max-width: 450px;
@@ -319,8 +338,9 @@ body {
       }
     }
     .ruler__box {
-      animation: showRulerBoxCode .4s 3.6s forwards,
-      returnBoxSpecItem .6s 13.3s forwards;
+      animation: 
+      showRulerBoxCode .4s 4s forwards,
+      returnBoxSpecItem .6s 14s forwards;
       @keyframes showRulerBoxCode {
         0% {
           height: 0;
@@ -394,22 +414,58 @@ body {
       }
     }
     .ruler-code__button {
-      animation: clickButtonCodeFirst .4s 13.2s forwards;
+      animation: clickButtonCodeFirst .4s 13s forwards;
       @keyframes clickButtonCodeFirst {
         0% {
           transform: scale(1) translateY(0);
         }
-        90% {
-          transform: scaleX(.9) translateY(2px);
+        50% {
+          transform: scaleX(.98) translateY(2px);
         }
         100% {
-          background: transparent;
-          border: 1px solid rgba(144, 144, 144, .1);
+          transform: scale(1) translateY(0);
         }
       }
     }
+
+    .ruler-code__button-word {
+      animation: clickButtonCodeFirstSubmitedText .4s 13.5s forwards;
+      @keyframes clickButtonCodeFirstSubmitedText {
+        100% {
+          max-width: none;
+        }
+      }
+    }
+
+    .ruler-code__button-plus {
+      animation: clickButtonCodeFirstSubmitedhidePlus .1s 13.5s forwards;
+      @keyframes clickButtonCodeFirstSubmitedhidePlus {
+        0% {
+          position: static;
+        }
+        20% {
+          opacity: 0;
+        }
+        100% {
+          position: absolute;
+          top: -100px;
+          opacity: 0;
+        }
+      }
+    }
+
+    .ruler-code__button-check {
+      animation: clickButtonCodeFirstSubmitedShowCheck .1s 13.5s forwards;
+      @keyframes clickButtonCodeFirstSubmitedShowCheck {
+        100% {
+          position: static;
+          opacity: 1;
+        }
+      }
+    }
+
     .ruler__label {
-      animation: showLabelRulerItem .4s 13.2s forwards;
+      animation: showLabelRulerItem .4s 14s forwards;
       @keyframes showLabelRulerItem {
         0% {
           width: 0;
