@@ -75,7 +75,7 @@ body {
       position: relative;
       width: calc(50% - 5px);
       padding: 18px;
-      background: rgba(23, 23, 28, .9);
+      background: #17171C;
       border-radius: 4px;
       border: 1px solid rgba(144, 144, 144, 0.1);
 
@@ -124,6 +124,7 @@ body {
       width: fit-content;
       display: flex;
       align-items: center;
+      position: relative;
       padding: 8px 13px;
       border-radius: 150px;
       border: 1px solid rgba(144, 144, 144, 0.1);
@@ -136,10 +137,43 @@ body {
       &_spec {
         border: none;
         background: linear-gradient(233.25deg, rgba(0, 194, 146, 0.6) 0%, rgba(54, 122, 235, 0.6) 99.28%);
-        color: rgba(255, 255, 255, 0.8);
+        color: rgba(255, 255, 255, .8);
 
-        svg {
+        &::after,
+        &::before {
+          content: "";
+          position: absolute;
+          border-radius: 150px;
+          background: transparent;
+          opacity: 0;
+        }
+
+        &::after {
+          top: -8%;
+          left: -3%;
+          width: 104%;
+          height: 110%;
+          border: 1px solid #1A3C50;
+        }
+
+        &::before {
+          top: -16%;
+          left: -5.3%;
+          width: 109%;
+          height: 130%;
+          border: 1px solid #192D3C;
+        }
+
+        &-plus,
+        &-check {
           margin-left: 7px;
+        }
+
+        &-check {
+          opacity: 0;
+          position: absolute;
+          right: 10px;
+          width: 10px;
         }
 
         &-text {
@@ -162,7 +196,7 @@ body {
       width: 100%;
       margin-bottom: 10px;
       padding: 12px 22px;
-      background: rgba(23, 23, 28, .9);
+      background: #17171C;
       border-radius: 4px;
       border: 1px solid rgba(144, 144, 144, .1);
 
@@ -223,7 +257,7 @@ body {
   &:hover {
 
     .impression-first__list {
-      animation: scrollingImpressionFirstList 2.5s forwards;
+      animation: scrollingImpressionFirstList 2.5s .3s forwards;
       @keyframes scrollingImpressionFirstList {
         0% {
           transform: translateY(0);
@@ -237,8 +271,22 @@ body {
       }
     }
 
+    .impression-first__item_spec {
+      z-index: 200;
+      animation: biggerCardImpression .6s 3.5s forwards;
+      @keyframes biggerCardImpression {
+        0% {
+          transform: scale(1);
+        }
+        100% {
+          transform: scale(1.7) translateX(-80px) translateY(17px);
+          padding-bottom: 40px;
+        }
+      }
+    }
+
     .impression-first__button_spec {
-      animation: pressButtonSubscribe .5s 2.5s forwards;
+      animation: pressButtonSubscribe .5s 4.8s forwards;
       @keyframes pressButtonSubscribe {
         0% {
           transform: scale(1);
@@ -249,16 +297,13 @@ body {
         }
         100% {
           transform: scale(1);
-          background: none;
-          color: rgba(203, 203, 214, .6);
-          border: 1px solid rgba(144, 144, 144, 0.1);
         }
       }
     }
 
-    .impression-first__button_spec svg{
-      animation: pressButtonSubscribeHideSVG .1s 2.7s forwards;
-      @keyframes pressButtonSubscribeHideSVG {
+    .impression-first__button_spec-plus {
+      animation: pressButtonSubscribeHidePlusSVG .1s 4.8s forwards;
+      @keyframes pressButtonSubscribeHidePlusSVG {
         0% {
           position: static;
         }
@@ -273,20 +318,18 @@ body {
       }
     }
 
-    .impression-first__item_spec::after {
-      animation: pressButtonSubscribeAfterBG .1s 2.7s forwards;
-      @keyframes pressButtonSubscribeAfterBG {
-        0% {
-          background: linear-gradient(233.25deg, #A62116 0%, #E88A37 99.28%);
-        }
+    .impression-first__button_spec-check {
+      animation: pressButtonSubscribeShowCheckSVG .1s 4.8s forwards;
+      @keyframes pressButtonSubscribeShowCheckSVG {
         100% {
-          background: linear-gradient(233.25deg, rgba(0, 194, 146, 0.6) 0%, rgba(54, 122, 235, 0.6) 99.28%);
+          position: static;
+          opacity: 1;
         }
       }
     }
 
     .impression-first__button_spec-text {
-      animation: pressButtonSubscribeChangeTextButton .1s 2.7s forwards;
+      animation: pressButtonSubscribeChangeTextButton .1s 4.8s forwards;
       @keyframes pressButtonSubscribeChangeTextButton {
         0% {
           max-width: 62px;
@@ -297,34 +340,32 @@ body {
       }
     }
 
-    .impression__darken_first {
-      z-index: 200;
-      animation: hideImpressionDarken .1s 2.7s forwards;
-      @keyframes hideImpressionDarken {
+    .impression-first__button_spec::after,
+    .impression-first__button_spec::before {
+      animation: 
+      pressButtonSubscribeShowGalo .4s 4.8s forwards,
+      pressButtonSubscribeBlinkGalo 3s 5s infinite;
+      @keyframes pressButtonSubscribeShowGalo {
+        100% {
+          opacity: 1;
+        }
+      }
+      @keyframes pressButtonSubscribeBlinkGalo {
         0% {
           opacity: 1;
         }
+        50% {
+          opacity: .2;
+        }
         100% {
-          opacity: 0;
+          opacity: 1;
         }
       }
-    }
 
-    .impression-first__item_spec {
-      z-index: 200;
-      animation: biggerCardImpression .6s 2.8s forwards;
-      @keyframes biggerCardImpression {
-        0% {
-          transform: scale(1);
-        }
-        100% {
-          transform: scale(2.1) translateX(-70px);
-        }
-      }
     }
 
     .impression-first {
-      animation: hideFirstImpression .4s 3.4s forwards;
+      animation: hideFirstImpression .4s 7.6s forwards;
       @keyframes hideFirstImpression {
         0% {
           transform: translateX(0);
@@ -338,32 +379,19 @@ body {
     }
 
     .impression-second {
-      animation: showSecondImpression .4s 3.4s forwards;
+      animation: showSecondImpression .8s 7.6s forwards;
       @keyframes showSecondImpression {
         0% {
           transform: translateY(0);
         }
         100% {
-          transform: translateY(-445px);
-        }
-      }
-    }
-
-    .impression__darken_second {
-      z-index: 400;
-      animation: showImpressionDarken .1s 3.4s forwards;
-      @keyframes showImpressionDarken {
-        0% {
-          opacity: 0;
-        }
-        100% {
-          opacity: 1;
+          transform: translateY(-465px);
         }
       }
     }
 
     .impression-second__list {
-      animation: scrollSecondImpressionList 3.2s 3.8s forwards;
+      animation: scrollSecondImpressionList 3.2s 9s forwards;
       @keyframes scrollSecondImpressionList {
         0% {
           transform: translateY(0);

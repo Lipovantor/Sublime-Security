@@ -72,7 +72,7 @@ body {
   position: relative;
   width: calc(50% - 5px);
   padding: 18px;
-  background: rgba(23, 23, 28, 0.9);
+  background: #17171C;
   border-radius: 4px;
   border: 1px solid rgba(144, 144, 144, 0.1);
 }
@@ -114,6 +114,7 @@ body {
   width: fit-content;
   display: flex;
   align-items: center;
+  position: relative;
   padding: 8px 13px;
   border-radius: 150px;
   border: 1px solid rgba(144, 144, 144, 0.1);
@@ -128,8 +129,35 @@ body {
   background: linear-gradient(233.25deg, rgba(0, 194, 146, 0.6) 0%, rgba(54, 122, 235, 0.6) 99.28%);
   color: rgba(255, 255, 255, 0.8);
 }
-.impression-first__button_spec svg {
+.impression-first__button_spec::after, .impression-first__button_spec::before {
+  content: "";
+  position: absolute;
+  border-radius: 150px;
+  background: transparent;
+  opacity: 0;
+}
+.impression-first__button_spec::after {
+  top: -8%;
+  left: -3%;
+  width: 104%;
+  height: 110%;
+  border: 1px solid #1A3C50;
+}
+.impression-first__button_spec::before {
+  top: -16%;
+  left: -5.3%;
+  width: 109%;
+  height: 130%;
+  border: 1px solid #192D3C;
+}
+.impression-first__button_spec-plus, .impression-first__button_spec-check {
   margin-left: 7px;
+}
+.impression-first__button_spec-check {
+  opacity: 0;
+  position: absolute;
+  right: 10px;
+  width: 10px;
 }
 .impression-first__button_spec-text {
   max-width: 62px;
@@ -147,7 +175,7 @@ body {
   width: 100%;
   margin-bottom: 10px;
   padding: 12px 22px;
-  background: rgba(23, 23, 28, 0.9);
+  background: #17171C;
   border-radius: 4px;
   border: 1px solid rgba(144, 144, 144, 0.1);
 }
@@ -197,7 +225,7 @@ body {
   color: rgba(255, 255, 255, 0.8);
 }
 .impression:hover .impression-first__list {
-  animation: scrollingImpressionFirstList 2.5s forwards;
+  animation: scrollingImpressionFirstList 2.5s 0.3s forwards;
 }
 @keyframes scrollingImpressionFirstList {
   0% {
@@ -210,8 +238,21 @@ body {
     transform: translateY(-115px);
   }
 }
+.impression:hover .impression-first__item_spec {
+  z-index: 200;
+  animation: biggerCardImpression 0.6s 3.5s forwards;
+}
+@keyframes biggerCardImpression {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.7) translateX(-80px) translateY(17px);
+    padding-bottom: 40px;
+  }
+}
 .impression:hover .impression-first__button_spec {
-  animation: pressButtonSubscribe 0.5s 2.5s forwards;
+  animation: pressButtonSubscribe 0.5s 4.8s forwards;
 }
 @keyframes pressButtonSubscribe {
   0% {
@@ -223,15 +264,12 @@ body {
   }
   100% {
     transform: scale(1);
-    background: none;
-    color: rgba(203, 203, 214, 0.6);
-    border: 1px solid rgba(144, 144, 144, 0.1);
   }
 }
-.impression:hover .impression-first__button_spec svg {
-  animation: pressButtonSubscribeHideSVG 0.1s 2.7s forwards;
+.impression:hover .impression-first__button_spec-plus {
+  animation: pressButtonSubscribeHidePlusSVG 0.1s 4.8s forwards;
 }
-@keyframes pressButtonSubscribeHideSVG {
+@keyframes pressButtonSubscribeHidePlusSVG {
   0% {
     position: static;
   }
@@ -244,19 +282,17 @@ body {
     opacity: 0;
   }
 }
-.impression:hover .impression-first__item_spec::after {
-  animation: pressButtonSubscribeAfterBG 0.1s 2.7s forwards;
+.impression:hover .impression-first__button_spec-check {
+  animation: pressButtonSubscribeShowCheckSVG 0.1s 4.8s forwards;
 }
-@keyframes pressButtonSubscribeAfterBG {
-  0% {
-    background: linear-gradient(233.25deg, #A62116 0%, #E88A37 99.28%);
-  }
+@keyframes pressButtonSubscribeShowCheckSVG {
   100% {
-    background: linear-gradient(233.25deg, rgba(0, 194, 146, 0.6) 0%, rgba(54, 122, 235, 0.6) 99.28%);
+    position: static;
+    opacity: 1;
   }
 }
 .impression:hover .impression-first__button_spec-text {
-  animation: pressButtonSubscribeChangeTextButton 0.1s 2.7s forwards;
+  animation: pressButtonSubscribeChangeTextButton 0.1s 4.8s forwards;
 }
 @keyframes pressButtonSubscribeChangeTextButton {
   0% {
@@ -266,32 +302,28 @@ body {
     max-width: 70px;
   }
 }
-.impression:hover .impression__darken_first {
-  z-index: 200;
-  animation: hideImpressionDarken 0.1s 2.7s forwards;
+.impression:hover .impression-first__button_spec::after,
+.impression:hover .impression-first__button_spec::before {
+  animation: pressButtonSubscribeShowGalo 0.4s 4.8s forwards, pressButtonSubscribeBlinkGalo 3s 5s infinite;
 }
-@keyframes hideImpressionDarken {
+@keyframes pressButtonSubscribeShowGalo {
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes pressButtonSubscribeBlinkGalo {
   0% {
     opacity: 1;
   }
-  100% {
-    opacity: 0;
-  }
-}
-.impression:hover .impression-first__item_spec {
-  z-index: 200;
-  animation: biggerCardImpression 0.6s 2.8s forwards;
-}
-@keyframes biggerCardImpression {
-  0% {
-    transform: scale(1);
+  50% {
+    opacity: 0.2;
   }
   100% {
-    transform: scale(2.1) translateX(-70px);
+    opacity: 1;
   }
 }
 .impression:hover .impression-first {
-  animation: hideFirstImpression 0.4s 3.4s forwards;
+  animation: hideFirstImpression 0.4s 7.6s forwards;
 }
 @keyframes hideFirstImpression {
   0% {
@@ -304,30 +336,18 @@ body {
   }
 }
 .impression:hover .impression-second {
-  animation: showSecondImpression 0.4s 3.4s forwards;
+  animation: showSecondImpression 0.8s 7.6s forwards;
 }
 @keyframes showSecondImpression {
   0% {
     transform: translateY(0);
   }
   100% {
-    transform: translateY(-445px);
-  }
-}
-.impression:hover .impression__darken_second {
-  z-index: 400;
-  animation: showImpressionDarken 0.1s 3.4s forwards;
-}
-@keyframes showImpressionDarken {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
+    transform: translateY(-465px);
   }
 }
 .impression:hover .impression-second__list {
-  animation: scrollSecondImpressionList 3.2s 3.8s forwards;
+  animation: scrollSecondImpressionList 3.2s 9s forwards;
 }
 @keyframes scrollSecondImpressionList {
   0% {
